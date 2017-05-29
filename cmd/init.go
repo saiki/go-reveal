@@ -103,11 +103,11 @@ func initAction(c *cli.Context) error {
 	defer func() {
 		os.Remove(zip)
 	}()
-	base, err := filepath.Abs(".")
+	root, err := filepath.Abs(c.GlobalString("root"))
 	if err != nil {
 		return err
 	}
-	root := filepath.Join(base, c.GlobalString("root"))
+
 	if err = extract(zip, root); err != nil {
 		return err
 	}
