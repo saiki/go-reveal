@@ -32,11 +32,10 @@ var serveCmd = cli.Command{
 }
 
 func serveAction(c *cli.Context) error {
-	base, err := filepath.Abs(".")
+	root, err := filepath.Abs(c.GlobalString("root"))
 	if err != nil {
 		return err
 	}
-	root := filepath.Join(base, c.GlobalString("root"))
 	addr := c.String("address")
 	log.SetOutput(browser.Stdout)
 	var url string
